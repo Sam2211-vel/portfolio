@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samvel S - Full Stack Developer & AI Enthusiast</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #185FA5;
+            --secondary: #639922;
+            --accent: #D85A30;
+            --text-dark: #1a1a1a;
+            --text-light: #666;
+            --bg-light: #f9f9f9;
+            --border: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: #fff;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            z-index: 1000;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 70px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #185FA5 0%, #0C447C 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+
+        .hero-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 4px solid white;
+            overflow: hidden;
+            object-fit: cover;
+        }
+
+        .hero-text h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.95;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--primary);
+        }
+
+        /* Sections */
+        section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--primary);
+            border-bottom: 3px solid var(--secondary);
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .skill-card {
+            background: var(--bg-light);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--secondary);
+        }
+
+        .skill-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .skill-card ul {
+            list-style: none;
+            font-size: 0.95rem;
+        }
+
+        .skill-card li:before {
+            content: "▸ ";
+            color: var(--accent);
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .skill-card li {
+            margin: 0.5rem 0;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+
+        .project-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1.5rem;
+        }
+
+        .project-header h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-date {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        .project-body {
+            padding: 1.5rem;
+        }
+
+        .project-body ul {
+            list-style: none;
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        .project-body li:before {
+            content: "✓ ";
+            color: var(--secondary);
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .project-body li {
+            margin: 0.5rem 0;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .tech-tag {
+            background: var(--bg-light);
+            color: var(--primary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* Experience */
+        .experience-item {
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            gap: 2rem;
+        }
+
+        .experience-item:last-child {
+            border-bottom: none;
+        }
+
+        .exp-date {
+            color: var(--accent);
+            font-weight: bold;
+            min-width: 150px;
+            font-size: 0.95rem;
+        }
+
+        .exp-content h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .exp-company {
+            color: var(--text-light);
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Education */
+        .education-item {
+            padding: 1.5rem;
+            background: var(--bg-light);
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--primary);
+        }
+
+        .education-item h3 {
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+        }
+
+        .education-meta {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, #185FA5 0%, #0C447C 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .contact-section h2 {
+            color: white;
+            border-bottom: 3px solid var(--secondary);
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .contact-item a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .contact-item a:hover {
+            opacity: 0.8;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 2rem;
+            transition: transform 0.3s, opacity 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .social-links a:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.2);
+            opacity: 1;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.95rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.85rem;
+            }
+
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+
+            section {
+                padding: 2rem 1rem;
+            }
+
+            .experience-item {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .contact-info {
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">Samvel S</div>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="about">
+            <div class="hero-content">
+                <img src="ss.jpeg" alt="Samvel S" class="hero-image">
+                <div class="hero-text">
+                    <h1>Hi, I'm Samvel S</h1>
+                    <p>Computer Science Undergraduate | Full Stack Developer | AI Enthusiast</p>
+                    <p>Building innovative tech solutions with Python, Android, and AI technologies</p>
+                    <div class="cta-buttons">
+                        <a href="#projects" class="btn btn-primary">View Projects</a>
+                        <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills">
+            <h2>Skills & Expertise</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>Programming Languages</h3>
+                    <ul>
+                        <li>Python</li>
+                        <li>Java</li>
+                        <li>C/C++</li>
+                        <li>JavaScript</li>
+                        <li>PHP</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <h3>Web Development</h3>
+                    <ul>
+                        <li>HTML5</li>
+                        <li>CSS3</li>
+                        <li>JavaScript</li>
+                        <li>Frontend Design</li>
+                        <li>Backend Integration</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <h3>Mobile Development</h3>
+                    <ul>
+                        <li>Android Studio</li>
+                        <li>Android Apps</li>
+                        <li>Mobile UI/UX</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <h3>Databases & Tools</h3>
+                    <ul>
+                        <li>MySQL</li>
+                        <li>PostgreSQL</li>
+                        <li>Git & GitHub</li>
+                        <li>Linux</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <h3>AI & Data Science</h3>
+                    <ul>
+                        <li>TensorFlow</li>
+                        <li>Machine Learning</li>
+                        <li>Data Analytics</li>
+                        <li>Gradio</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card">
+                    <h3>Core Concepts</h3>
+                    <ul>
+                        <li>Data Structures</li>
+                        <li>Algorithms</li>
+                        <li>DBMS</li>
+                        <li>Operating Systems</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects">
+            <h2>Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>E-Waste Classification AI</h3>
+                        <div class="project-date">Jun - Jul 2025</div>
+                    </div>
+                    <div class="project-body">
+                        <ul>
+                            <li>Developed AI models using TensorFlow</li>
+                            <li>Classified different types of e-waste</li>
+                            <li>Built interactive Gradio interface</li>
+                            <li>Real-time eco-friendly insights</li>
+                        </ul>
+                        <div class="tech-stack">
+                            <span class="tech-tag">TensorFlow</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Gradio</span>
+                            <span class="tech-tag">AI/ML</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Entrepreneurship Mobile App</h3>
+                        <div class="project-date">Ongoing</div>
+                    </div>
+                    <div class="project-body">
+                        <ul>
+                            <li>Android application with PHP backend</li>
+                            <li>User authentication & login</li>
+                            <li>Admin panel for management</li>
+                            <li>Business operations support</li>
+                        </ul>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Android</span>
+                            <span class="tech-tag">PHP</span>
+                            <span class="tech-tag">MySQL</span>
+                            <span class="tech-tag">Java</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Blockchain IP Protection</h3>
+                        <div class="project-date">Final Project (SGPA: 9)</div>
+                    </div>
+                    <div class="project-body">
+                        <ul>
+                            <li>AI-powered multimedia copyright protection</li>
+                            <li>Blockchain-based ownership verification</li>
+                            <li>Multi-modal fingerprint generation</li>
+                            <li>IPFS decentralized storage</li>
+                        </ul>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Blockchain</span>
+                            <span class="tech-tag">Ethereum</span>
+                            <span class="tech-tag">IPFS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience">
+            <h2>Experience & Internships</h2>
+            
+            <div class="experience-item">
+                <div class="exp-date">Jun - Jul 2025</div>
+                <div class="exp-content">
+                    <h3>AI and Data Analytics Intern</h3>
+                    <div class="exp-company">Edunet Internship</div>
+                    <p>Developed AI models for e-waste classification using TensorFlow and created an interactive Gradio interface for real-time eco-friendly insights. Promoted sustainable recycling practices through technology.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education">
+            <h2>Education</h2>
+
+            <div class="education-item">
+                <h3>B.Tech in Computer Science and Engineering</h3>
+                <div class="education-meta">B.S. Abdur Rahman Crescent Institute of Science and Technology</div>
+                <div class="education-meta">2022 – 2026 | CGPA: 8.92</div>
+            </div>
+
+            <div class="education-item">
+                <h3>Intermediate (12th Grade)</h3>
+                <div class="education-meta">Sengunthar Matric. Hr. Sec. School</div>
+                <div class="education-meta">2019 – 2021 | Score: 82%</div>
+            </div>
+
+            <div class="education-item">
+                <h3>SSLC (10th Grade)</h3>
+                <div class="education-meta">Mount Shervaroys Matric School</div>
+                <div class="education-meta">2018 – 2019 | Score: 76.2%</div>
+            </div>
+
+            <div class="education-item">
+                <h3>Certifications & Courses</h3>
+                <ul style="margin-top: 0.5rem; margin-left: 1rem;">
+                    <li>Career Essentials in Generative AI – LinkedIn Learning</li>
+                    <li>Python, DBMS, and English for Competitive Exams – NPTEL</li>
+                    <li>RDBMS PostgreSQL, Linux, Python 3.4.3 – IIT Spoken Tutorial</li>
+                    <li>C Programming – Infosys Springboard (Jun–Jul 2025)</li>
+                    <li>AI and Data Analytics, Front-End Development – IBM SkillBuild</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact-section" id="contact">
+            <h2>Get in Touch</h2>
+            <p style="margin: 1rem 0; font-size: 1.1rem;">Let's connect and build something amazing together!</p>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <a href="tel:+916383900609">+91 6383900609</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:svel6390@gmail.com">svel6390@gmail.com</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Chennai, Tamil Nadu</span>
+                </div>
+            </div>
+
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/samvel-s-849b59305/" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://github.com/sam211-vel" target="_blank" rel="noopener noreferrer" title="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="mailto:svel6390@gmail.com" title="Email">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Samvel S. All rights reserved. | Built with passion for technology</p>
+    </footer>
+</body>
+</html>
